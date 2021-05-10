@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">AblyTest</string>
+
+    <string name="home">홈</string>
+    <string name="like">좋아요</string>
+
+    <string name="goods_price">%,d</string>
+    <string name="goods_discount">%,d%%</string>
+    <string name="goods_sell_count">%,d개 구매중</string>
+
+    <string name="banner_page_indicator">%d/%d</string>
+</resources>

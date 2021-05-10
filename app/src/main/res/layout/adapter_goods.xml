@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="item"
+            type="com.osung.ablytest.domain.entity.Goods" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.osung.ablytest.presentation.custom.GoodsImageView
+            android:id="@+id/goodsImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:setImage="@{item.image}" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/goodsLike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:button="@drawable/selector_like"
+            android:checked="@{item.isZzim}"
+            app:layout_constraintTop_toTopOf="@id/goodsImage"
+            app:layout_constraintEnd_toEndOf="@id/goodsImage"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/goodsDiscount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="@dimen/goods_main_size"
+            android:textColor="@color/watermelon"
+            android:layout_marginEnd="4dp"
+            app:setActualPrice="@{item.actualPrice}"
+            app:setPrice="@{item.price}"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintTop_toTopOf="@id/goodsPrice"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/goodsPrice"
+            tools:text="10%" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/goodsPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="@dimen/goods_main_size"
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp"
+            android:text="@{@string/goods_price(item.price)}"
+            app:layout_constraintTop_toBottomOf="@id/goodsImage"
+            app:layout_constraintStart_toEndOf="@id/goodsDiscount"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="8,200" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/goodsName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/goods_sub_size"
+            android:textColor="@color/brownish_grey"
+            android:layout_marginTop="4dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="@{item.name}"
+            app:layout_constraintTop_toBottomOf="@id/goodsPrice"
+            app:layout_constraintStart_toStartOf="@id/goodsImage"
+            app:layout_constraintEnd_toEndOf="@id/goodsImage"
+            tools:text="[가격실화?!] 가성비 대박 쿨틀…" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/goodsNew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_badge_new"
+            android:layout_marginEnd="5dp"
+            android:visibility="@{item.isNew? View.VISIBLE : View.GONE}"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintTop_toTopOf="@id/goodsSellCount"
+            app:layout_constraintBottom_toBottomOf="@id/goodsSellCount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/goodsSellCount"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/goodsSellCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/goods_sub_size"
+            android:textColor="@color/brownish_grey"
+            android:layout_marginTop="9dp"
+            android:text="@{@string/goods_sell_count(item.sellCount)}"
+            app:layout_constraintTop_toBottomOf="@id/goodsName"
+            app:layout_constraintStart_toEndOf="@id/goodsNew"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="1,023개 구매중"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
